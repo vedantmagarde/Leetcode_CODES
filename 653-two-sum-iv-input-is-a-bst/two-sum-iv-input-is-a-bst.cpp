@@ -7,11 +7,9 @@ public:
         arr.push_back(root->val);
         fun(arr, root->right);
     }
-    
 
     bool findTarget(TreeNode* root, int k) {
-        if (root != NULL && root->left == NULL && root->right == NULL)
-            return false;
+
         vector<int> arr;
         fun(arr, root);
         int l = 0, r = arr.size() - 1;
