@@ -1,16 +1,22 @@
 class Solution {
 public:
-    int fun(vector<int>& cost, int step, vector<int>& dp) {
-        if (step >= cost.size())
+    int robRE(vector<int>& nums, int i, vector<int>& dp) {
+
+        if (i >= nums.size()) {
             return 0;
-            
-        if (dp[step] != -1)
-            return dp[step];
-        return dp[step] = max(fun(cost, step + 1, dp),
-                              cost[step] + fun(cost, step + 2, dp));
+        }
+        if (dp[i] != -1)
+            return dp[i];
+
+        int robAmount1 = 0 + robRE(nums, i + 1, dp);       // skipped
+        int robAmount2 = nums[i] + robRE(nums, i + 2, dp); // looted
+
+        return dp[i] = max(robAmount1, robAmount2);
     }
-    int rob(vector<int>& cost) {
-        vector<int> dp(cost.size() + 5, -1);
-        return max(fun(cost, 0, dp), fun(cost, 1, dp));
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(n, -1);
+        return robRE(nums, 0, dp);
     }
 };
