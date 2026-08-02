@@ -9,7 +9,7 @@ public:
 
         if (dp[amount][idx] != -5)
             return dp[amount][idx];
-            
+
         int skip = fun(amount, coins, idx + 1, dp);
 
         int take = 0;
