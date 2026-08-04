@@ -7,14 +7,14 @@ public:
 
         if (dp[i1][i2] != -4)
             return dp[i1][i2];
-        int ans1 = 0;
+
         if (text1[i1] == text2[i2])
-            ans1 = 1 + fun(text1, text2, i1 + 1, i2 + 1, dp);
+            return 1 + fun(text1, text2, i1 + 1, i2 + 1, dp);
 
-        int ans2 = fun(text1, text2, i1 + 1, i2, dp);
-        int ans3 = fun(text1, text2, i1, i2 + 1, dp);
+        int ans1 = fun(text1, text2, i1 + 1, i2, dp);
+        int ans2 = fun(text1, text2, i1, i2 + 1, dp);
 
-        return dp[i1][i2] = max({ans1, ans2, ans3});
+        return dp[i1][i2] = max(ans1, ans2);
     }
     int longestCommonSubsequence(string text1, string text2) {
         vector<vector<int>> dp(1005, vector<int>(1005, -4));
