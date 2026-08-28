@@ -9,11 +9,12 @@ public:
         }
 
         for (int i = nums.size() - 1; i >= 0 && itr >= 0; i--) {
-            if (nums[i] > nums[itr]) {
+            if (nums[itr] < nums[i]) {
                 swap(nums[i], nums[itr]);
                 break;
             }
         }
+
         reverse(nums.begin() + itr + 1, nums.end());
     }
 };
