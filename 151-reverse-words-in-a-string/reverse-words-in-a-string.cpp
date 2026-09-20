@@ -4,21 +4,24 @@ public:
 
         int p = s.length() - 1;
         string answer = "";
-        
+
         while (p >= 0) {
+
             while (p >= 0 && s[p] == ' ') {
                 p--;
             }
-            int end = p;
+
+            string temp;
             while (p >= 0 && s[p] != ' ') {
+                temp.push_back(s[p]);
                 p--;
             }
 
-            if (!answer.empty()) {
-                answer += " ";
-            }
-            answer += s.substr(p + 1, end - p);
+            reverse(temp.begin(), temp.end());
+
+            answer += answer.empty() ? temp : " " + temp;
         }
+
         while (answer.back() == ' ') {
             answer.pop_back();
         }
