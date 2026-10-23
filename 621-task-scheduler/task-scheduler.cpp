@@ -17,22 +17,24 @@ public:
         }
 
         while (!pq.empty()) {
-            int tasks_executed = 0;
+            int task_comp = 0;
 
-            for (int i = 1; !pq.empty() && i <= n + 1; i++) {
+            for (int i = 1; !pq.empty() &&i <= n + 1; i++) {
                 int freq = pq.top();
                 pq.pop();
 
                 if (freq - 1 > 0)
                     st.push(freq - 1);
-                tasks_executed++;
+
+                task_comp++;
             }
-            while (!st.empty()) {
+
+            while(!st.empty()){
                 pq.push(st.top());
                 st.pop();
             }
 
-            cycle += pq.empty() ? tasks_executed : n + 1;
+            cycle += pq.empty() ? task_comp : n + 1;
         }
 
         return cycle;
