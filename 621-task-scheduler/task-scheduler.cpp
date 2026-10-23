@@ -9,34 +9,30 @@ public:
         }
 
         priority_queue<int> pq; // freq , ava_cycle , char
-        stack<int> st;
 
-        int cycle = 0;
+        int time = 0;
         for (auto x : mp) {
             pq.push(x.second);
         }
 
         while (!pq.empty()) {
-            int task_comp = 0;
+            vector<int> temp;
 
-            for (int i = 1; !pq.empty() &&i <= n + 1; i++) {
+            for (int i = 1; !pq.empty() && i <= n + 1; i++) {
                 int freq = pq.top();
                 pq.pop();
+                freq--;
 
-                if (freq - 1 > 0)
-                    st.push(freq - 1);
-
-                task_comp++;
+                temp.push_back(freq);
             }
 
-            while(!st.empty()){
-                pq.push(st.top());
-                st.pop();
-            }
+            for (auto x : temp)
+                if (x > 0)
+                    pq.push(x);
 
-            cycle += pq.empty() ? task_comp : n + 1;
+            time += pq.empty() ? temp.size() : n + 1;
         }
 
-        return cycle;
+        return time;
     }
 };
