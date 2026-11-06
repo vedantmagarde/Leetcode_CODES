@@ -18,7 +18,7 @@ public:
             }
         }
 
-        if(fo==0)return 0;
+        if (fo == 0) return 0;
         // saare src add kar liye jaha se bfs lagana hai
         // q.push({-1, -1}); // use to separate
 
@@ -39,7 +39,7 @@ public:
 
                     if (0 <= neigh_row && 0 <= neigh_col && neigh_col < col &&
                         neigh_row < row && grid[neigh_row][neigh_col] == 1) {
-                            
+
                         fo--;
                         grid[neigh_row][neigh_col] = 2;
                         q.push({neigh_row, neigh_col});
